@@ -1,19 +1,19 @@
 let ws = new WebSocket("wss://ws-feed.pro.coinbase.com");
 
-const sendData = (query) => {
+const sendData = (msg) => {
   ws.send(
     JSON.stringify({
       type: "subscribe",
-      product_ids: [query],
+      product_ids: [msg],
       channels: ["full"],
     })
   );
 };
 
 const data = () => {
-  let query = document.querySelector("#val").value;
-  if (query === "---") return;
-  sendData(query);
+  let msg = document.getElementById("val").value;
+  if (msg === "---") return;
+  sendData(msg);
 };
 
 ws.onopen = function () {
