@@ -23,17 +23,13 @@ ws.onopen = function () {
 ws.onmessage = (event) => {
   event = JSON.parse(event.data);
   console.log(event.time);
-  document.getElementById("time").innerHTML = event.time
-    .replace("T", " ")
-    .replace(".", " ")
-    .split(" ")
-    .slice(0, 2)
-    .join(" ");
+  document.getElementById("time").innerHTML =
+    event.time.substring(0, 10) + " " + event.time.substring(11, 19);
 
-  if (event.side == "buy") {
-    document.getElementById("buy").innerHTML = event.price;
-  }
+  // if (event.side == "buy") {
+  //   document.getElementById("buy").innerHTML = event.price;
+  // }
 
-  if (event.side == "sell")
-    document.getElementById("sell").innerHTML = event.price;
+  // if (event.side == "sell")
+  //   document.getElementById("sell").innerHTML = event.price;
 };
